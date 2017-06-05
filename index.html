@@ -9,6 +9,191 @@
 	<script src="js/external/underscore.js"></script>
 	<script src="js/external/backbone.js"></script>
 	<script>
+		// chapter2 javascript基本構文など
+		// String
+		var doubleQuoteString = "A String in double quotes";
+		var escapedQuote = 'He sail \'hello\'';
+		console.log(doubleQuoteString)
+		console.log(escapedQuote)
+
+		// Number
+		var count = 10
+		var cost = 2.99
+		var pi = 123e5
+		console.log(count)
+		console.log(cost)
+		console.log(pi)
+
+		// Boolean
+		var lightsOn = true
+		console.log(lightsOn)
+
+		// UndefinedとNull
+		var initialVariable
+		console.log(initialVariable)
+		initialVariable = 'hello'
+		initialVariable = null
+		console.log(initialVariable)
+
+		// Date
+		var now = new Date()
+		console.log(now)
+		var calendarString = now.toDateString()
+		var time = now.toTimeString()
+		console.log(calendarString)
+		console.log(time)
+
+		// Math
+		var doubleValue = 2.123
+		var intValue = Math.ceil(doubleValue)
+		console.log(doubleValue)
+		console.log(intValue)
+
+		// RegExp
+		var pattern = new RegExp('javascript', 'i')
+		var pattern2 = /javascript/i
+		console.log(pattern)
+		console.log(pattern2)
+
+		var myString = 'I love Javascript'
+		var match = myString.match(pattern)
+		console.log(match)
+
+		// if
+		var userInput = "run"
+		if(userInput === 'run'){
+			console.log('running application')
+		}
+		var price = 11
+		var outputString = (price < 10) ? 'Reasonable' : 'Too expensive'
+		console.log(outputString)
+
+		// roop
+		for(var i = 2; i >= 0; i--){
+			console.log(i + 'iiiii')
+		}
+
+		var count = 0
+		while(count < 3){
+			console.log(count)
+			count++
+		}
+
+		do{
+			console.log(count)
+			count++
+		} while(count < 5)
+
+		// 配列
+		var myArray = []
+		myArray[0] = 'first item'
+		myArray.push('second item')
+		var myArray2 = new Array('first item', 'second item', 3)
+
+		console.log(myArray)
+		console.log(myArray2)
+		console.log(myArray2.valueOf()) // プリミティブ値
+
+		// closer
+		function calculateArea(height, width, shape) {
+			var pi = Math.PI
+
+			// ひとつめのクロージャ
+			function getCircleArea(){
+				var area = pi*(height*height)
+				return area
+			}
+
+			// ふたつめのクロージャ
+			function getRectangleArea(){
+				var area = width * height
+				return area
+			}
+
+			if(shape === 'Circle'){
+				return getCircleArea()
+			} else{
+				return getRectangleArea()
+			}
+		}
+
+		console.log("calculateArea")
+		console.log(calculateArea(10, 5, 'Circle'))
+
+		// javascriptとオブジェクト指向
+		var myObject = new Object()
+		myObject.id = 100
+		var myObject2 = {id: 100}
+		console.log(myObject)
+		console.log(myObject2)
+		console.log(myObject2.id)
+
+		// コンストラクタ・メソッド・カプセル化
+		// コンストラクタ定義
+		function Message(subject, recipient, content) {
+			this.subject = subject
+			this.recipient = recipient
+			this.content = content
+			// メソッドを公開
+			this.showMessage = showMessage
+			function showMessage() {
+				console.log('To:' + recipient + ' Subject:' + subject + ' content:' + content)
+			}
+ 		}
+
+		var myEmail = new Message('subject', 'recipient', 'content')
+		console.log(myEmail)
+		myEmail.showMessage()
+
+		// メソッド
+		Message.prototype.showPrototype = function(){
+			console.log ('showPrototype')
+		}
+
+		var myEmail2 = new Message('subject', 'recipient', 'content')
+		myEmail2.showPrototype()
+
+		// カプセル化
+		Message.prototype = {
+			constructor: Message,
+
+			sendMessage: function(){
+				console.log('Sending message to' + this.recipient)
+			},
+
+			show: function() {
+				console.log('prototype.show  To:' + this.recipient + ' Subject:' + this.subject + ' content:' + this.content)
+			}
+		}
+
+		var workMessage = new Message('Work complete', 'boss@mycorp.com', 'My work is done here')
+		var socialMessage = new Message('Time to go out', 'friend@gmail.com', 'Finished work now')
+		workMessage.sendMessage()
+		socialMessage.sendMessage()
+		// ↓はprototypeを上書きしてしまっているので、実行不可
+		// socialMessage.showPrototype()
+
+		// プロトタイプを使った継承
+		function Animal(name){
+			this.name = name
+		}
+
+		Animal.prototype.talk = function(){
+			console.log(this.phrase)
+		}
+
+		function Dog(phrase){
+			this.phrase = phrase
+			// 親のコンストラクタを使用する
+			this.constructor('Dog')
+		}
+
+		// 継承する
+		Dog.prototype = new Animal()
+		// Dog.prototype.constructor = Dog
+		var myDog = new Dog('bow')
+		myDog.talk()
+
 	</script>
 </body>
 </html>
