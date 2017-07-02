@@ -5,6 +5,7 @@ var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
 var bookId = 100
+console.log("1: node started")
 
 function findBook(id){
 	for(var i=0;i<books.length;i++){
@@ -34,8 +35,12 @@ var allowCrossDomain = function(req, response, next){
 	}
 }
 
+console.log("2: node started")
+
 app.use(allowCrossDomain)
-// app.use(bodyParser())
+app.use(bodyParser())
+
+console.log("3: node started")
 
 
 var books = [

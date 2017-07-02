@@ -5,14 +5,26 @@
 	<title>MyApp</title>
 </head>
 <body>
+	<!-- 4.2.2 物理ビューへのバインディング -->
+	<div id="myLibraryViewSection"></div>
+	<div id="anotherViewSection"></div>
 	<script src="js/external/jquery-3.2.1.js"></script>
 	<script src="js/external/underscore.js"></script>
 	<script src="js/external/backbone.js"></script>
 	<!-- <script src="js/chapter2/chapter2Javascript.js"></script> -->
-	<script src="js/chapter3/chapter3SampleBackboneApp.js"></script>
-	<script>
+	<!-- <script src="js/chapter3/chapter3SampleBackboneApp.js"></script> -->
+	<script src="js/chapter4/chapter4SampleBackboneApp.js"></script>
 
-
+	<!-- 4.4 Underscoreによるテンプレート化 -->
+	<script type='text/template' id='library-template'>
+		<ul>
+			<% for(var i=0;i<library.length;i++){ %>
+				<% var book = library[i] %>
+				<li>
+					<em><%= book.name %></em> by <%= book.author %>
+				</li>
+			<% } %>
+		</ul>
 	</script>
 </body>
 </html>
