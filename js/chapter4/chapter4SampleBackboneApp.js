@@ -138,7 +138,7 @@ eventlibraryview.delegateEvents({
 	'mouseover #book' : 'alertBook'
 })
 // イベントをクリアする
-// eventlibraryview.undelegateEvents()
+eventlibraryview.undelegateEvents()
 
 
 
@@ -147,17 +147,21 @@ UnderScoreLibraryView = Backbone.View.extend({
 	initialize: function(){
 		this.render()
 	},
-	template: _.template($("library-template").html()),
+	// template: _.template($("library-template").html()),
 	render: function(){
 		var self = this
+		var jsonCol = {"name": "jsonname", "author": "jsonauthor"}
 		// template: を定義しない場合、こちらでもいける
-		// var output = _.template($("library-template").html, {'library: self.collection.toJSON()'})
-		// self.$el.append(output)
+		// #library-templateを見つけられていない。たぶんelに別のDOM指定しているから
+		var output = _.template($("#library-template").html(), {'library': jsonCol})
+		self.$el.append(output)
+		console.log(self)
+		console.log(output)
 		return self
 	}
 })
 
-var underlibraryview = new UnderScoreLibraryView({
-	collection: mylibrary,
-	el: '#myLibraryViewSection' // htmlでidに指定しているから#が必要
-})
+// console.log(viewbook.toJSON())
+// var underlibraryview = new UnderScoreLibraryView({
+// 	el: '#myLibraryViewSection' // htmlでidに指定しているから#が必要
+// })
