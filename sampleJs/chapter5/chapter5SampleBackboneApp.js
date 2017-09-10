@@ -270,7 +270,6 @@ LibraryView = Backbone.View.extend({
 
 	},
 	alertBook: function(e){
-		console.log(e)
 		alert('book clicked name is ' + this.collection.models[0].attributes.name) // クリックしたmodelを特定する方法は忘れた
 	}
 })
